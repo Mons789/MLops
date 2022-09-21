@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <center>
+            <h1> Bank Note Authentication </h1>
+            <br><br><br>
+            <table border=2>
+                {% for key,value in output.items() %}
+                <tr>
+                    <th>{{key}}</th>
+                    <td>{{value}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br><br><br>
+            <button><a href="http://127.0.0.1:5000/docs"> Go Back </a></button>
+            
+            
+          
+        </center>
+    </body>
+</html>
