@@ -9,13 +9,12 @@ pipeline {
 	   }
 	   stage('Build Image') {
 	        steps {
-	        sh 'docker build -t myfinalimage .'
+	        sh 'docker build -t image1 .'
 	        }
 	   }
 	   stage('Run Image') {
 	        steps {
-	        sh 'docker run -d --name mycontainer2 -p 5000:5000 myfinalimage'
-		-v $(which docker):/usr/bin/docker
+	        sh 'docker run -d --name mycontainer3 -p 5000:5000 image1'
 	        }
 	   }
 	   stage('Testing'){
