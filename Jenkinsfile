@@ -14,7 +14,7 @@ pipeline {
 	   }
 	   stage('Run Image') {
 	        steps {
-	        sh 'docker run -d --name mycontainer3 image1'
+	        sh 'docker run -d -v /var/run/docker.sock:/var/run/docker.sock \-v $(which docker):/usr/bin/docker -p 8080:8080 image1'
 	        }
 	   }
 	   stage('Testing'){
