@@ -14,7 +14,7 @@ pipeline {
 	   }
 	   stage('Run Image') {
 	        steps {
-	        sh 'docker run -d --name mycontainer3 -p 5000:5000 image1'
+	        sh 'docker run -d --name mycontainer3 image1'
 	        }
 	   }
 	   stage('Testing'){
