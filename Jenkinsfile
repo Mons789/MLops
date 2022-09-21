@@ -9,17 +9,17 @@ pipeline {
 	   }
 	   stage('Build Image') {
 	        steps {
-	        sh 'docker build -t myfinalimage .'
+	        RUN 'docker build -t myfinalimage .'
 	        }
 	   }
 	   stage('Run Image') {
 	        steps {
-	        sh 'docker run -d --name mycontainer2 -p 5000:5000 myfinalimage'
+	        RUN 'docker run -d --name mycontainer2 -p 5000:5000 myfinalimage'
 	        }
 	   }
 	   stage('Testing'){
 	        steps {
-	            echo 'Testing..'
+	            print 'Testing..'
 	            }
 	   }
     }
