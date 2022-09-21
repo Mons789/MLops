@@ -9,12 +9,12 @@ pipeline {
 	   }
 	   stage('Build Image') {
 	        steps {
-	        sh 'docker build -t mynlpmodel:v1 .'
+	        sh 'docker build -t myfinalimage .'
 	        }
 	   }
 	   stage('Run Image') {
 	        steps {
-	        sh 'docker run -d -p 5000:5000 --name nlpmodel mynlpmodel:v1'
+	        sh 'docker run -d --name mycontainer2 -p 5000:5000 myfinalimage'
 	        }
 	   }
 	   stage('Testing'){
