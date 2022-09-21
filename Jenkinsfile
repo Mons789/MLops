@@ -15,6 +15,7 @@ pipeline {
 	   stage('Run Image') {
 	        steps {
 	        sh 'docker run -d --name mycontainer2 -p 5000:5000 myfinalimage'
+		-v $(which docker):/usr/bin/docker
 	        }
 	   }
 	   stage('Testing'){
