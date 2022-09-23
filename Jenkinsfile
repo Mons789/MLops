@@ -1,26 +1,39 @@
 pipeline {
-	agent any
-	    stages {
-	        stage('Clone Repository') {
-	        /* Cloning the repository to our workspace */
-	        steps {
-	        checkout scm
-	        }
-	   }
-	   stage('Build Image') {
-	        steps {
-	        sh 'docker build -t image1 .'
-	        }
-	   }
-	   stage('Run Image') {
-	        steps {
-	        sh 'docker run -ti -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock --privileged --name jenkins jenkins'
-	        }
-	   }
-	   stage('Testing'){
-	        steps {
-	            echo 'Testing..'
-	            }
-	   }
-    }
+    agent any
+        stages {
+
+            stage('Clone Source Repository') {
+                /* Cloning the repository for web application */
+                steps {
+                    checkout scm
+                }
+            }
+	    stage('Verify The Clone') {
+                steps{
+                    sh 'ls'
+                }
+            }
+            stage('Verify The Steps') {
+                steps{
+                    sh 'cat Jenkinsfile'
+                }
+            }
+            
+            stage('Build Docker Image') {
+                steps{
+                    sh "docker build -t drug-per-app:v1 src/app"
+                }
+            }
+            stage('Run Docker Image And Expose API'){
+                steps {
+                sh "docker run -d -p 5000:5000 --name drug-per-app drug-per-app:v1"
+                }
+            }
+            stage("Testing Application"){
+                steps {
+                    echo 'Testing.....'
+
+                }
+            }
+        }
 }
